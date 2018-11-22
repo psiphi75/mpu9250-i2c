@@ -1,14 +1,15 @@
 [package]
+name = "mpu9250-i2c"
 authors = ["Simon Werner <simonwerner@gmail.com>"]
 categories = ["embedded", "no-std", "hardware-support", "science::robotics"]
 documentation = "https://docs.rs/mpu9250-i2c"
 repository = "https://github.com/psiphi75/mpu9250-i2c"
 description = "MPU9250 i2c driver for embedded devices"
-name = "mpu9250-i2c"
+readme = "README.md"
 version = "0.5.0"
 license = "Apache-2.0"
 
 [dependencies]
 embedded-hal = "0.2.2"
 linux-embedded-hal = "0.2.1"
-
+madgwick = "0.1.1"

@@ -3,16 +3,19 @@
 MPU9250 driver for embedded devices and Linux written in Rust.
 
 A platform agnostic driver to interface with the MPU9250 over i2c.
-This driver can access the following components of the MPU9250:
-
-- 3-axis gyroscope
-- 3-axis compass (magenetometer)
-- 3-axis accelerometer
-- Temperature device
 
 This driver was built using [`embedded-hal`] traits.
 
 [`embedded-hal`]: https://docs.rs/embedded-hal/
+
+## Features
+
+[x] 3-axis gyroscope
+[x] 3-axis compass (magenetometer)
+[x] 3-axis accelerometer
+[x] Temperature device
+[x] AHRS (Attitude and heading reference system) - has Magwick filter example
+[ ] Tests
 
 ## Examples
 
