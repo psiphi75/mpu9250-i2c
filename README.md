@@ -79,7 +79,9 @@ At a high-level the calibration does the following:
 ## MPU9250 documentation
 
 https://www.invensense.com/products/motion-tracking/9-axis/mpu-9250/
+
 https://www.invensense.com/wp-content/uploads/2015/02/MPU-9250-Datasheet.pdf
+
 https://www.invensense.com/wp-content/uploads/2015/02/MPU-9250-Register-Map.pdf
 
 ## License
