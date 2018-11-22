@@ -10,12 +10,12 @@ This driver was built using [`embedded-hal`] traits.
 
 ## Features
 
-[x] 3-axis gyroscope
-[x] 3-axis compass (magenetometer)
-[x] 3-axis accelerometer
-[x] Temperature device
-[x] AHRS (Attitude and heading reference system) - has Magwick filter example
-[ ] Tests
+- [x] 3-axis gyroscope
+- [x] 3-axis compass (magenetometer)
+- [x] 3-axis accelerometer
+- [x] Temperature device
+- [x] AHRS (Attitude and heading reference system) - has Magwick filter example
+- [ ] Tests
 
 ## Examples
 
