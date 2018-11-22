@@ -1,0 +1,3 @@
+[target.armv7-unknown-linux-musleabihf]
+linker = "arm-linux-gnueabihf-gcc"
+rustflags = ["-Clink-args=-Xlinker -rpath=/usr/lib/arm-linux-gnueabihf"]
