@@ -6,7 +6,7 @@ documentation = "https://docs.rs/mpu9250-i2c"
 repository = "https://github.com/psiphi75/mpu9250-i2c"
 description = "MPU9250 i2c driver for embedded devices"
 readme = "README.md"
-version = "0.6.0"
+version = "0.6.1"
 license = "Apache-2.0"
 
 [dependencies]
