@@ -1,10 +1,6 @@
 # mpu9250-i2c
 
-MPU9250 driver for embedded devices and Linux written in Rust.
-
-A platform agnostic driver to interface with the MPU9250 over i2c.
-
-This driver was built using [`embedded-hal`] traits.
+MPU9250 driver for embedded devices and Linux written in Rust. A platform agnostic driver to interface with the MPU9250 over i2c. This driver was built using [`embedded-hal`] traits.
 
 [`embedded-hal`]: https://docs.rs/embedded-hal/
 
