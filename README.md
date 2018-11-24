@@ -52,6 +52,12 @@ fn main() {
 }
 ```
 
+_Handy hint_: Use the following command to compile for BeagleBone / Raspbery Pi.
+
+```sh
+cargo build --target=armv7-unknown-linux-musleabihf --release
+```
+
 ## Calibration
 
 The technology used in these devices is very noisy. Each component
