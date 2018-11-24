@@ -190,6 +190,13 @@ where
     // soft reset the device
     self.soft_reset()?;
 
+    // Set to 400 kHz
+    self.i2c.write_byte(
+      mpu9250::ADDRESS,
+      mpu9250::Register::I2C_MST_CTRL.addr(),
+      0x0d,
+    )?;
+
     // define clock source
     self.set_clock_source(mpu9250::RegPwrMgmt1::CLKSEL_1.addr())?;
 
@@ -541,6 +548,8 @@ where
   pub fn ak8963_init(&mut self) -> Result<(), E> {
     self.ak8963_update_sensitivity_adjustment_values()?;
     self.delay.delay_ms(10);
+
+    // 100 Hz continuous measurement, 16-bit
     self.ak8963_set_cntl(mag::Ctnl1::MODE_CONTINUE_MEASURE_2)
   }
 
@@ -577,6 +586,10 @@ where
   }
 
   /// Get the magnetometer data.  Returns values in degrees per second.
+  ///
+  /// Note, this will align the orientation of the magnetometer's reference
+  /// frame to the same as the accelerometer and gyroscope.  Read the "Orientation of Axes"
+  /// section of the Mpu9250 vendor documentation.
   pub fn get_mag(&mut self) -> Result<(Vector<f32>), E> {
     let bytes: &mut [u8] = &mut [0; 6];
 
@@ -585,6 +598,11 @@ where
     let xi = f32::from(self.i2c.u8_to_i16_le(bytes, 0));
     let yi = f32::from(self.i2c.u8_to_i16_le(bytes, 2));
     let zi = f32::from(self.i2c.u8_to_i16_le(bytes, 4));
+
+    // Orientate the magnetometer to the same reference frame as the accelerometer
+    // and gyroscope.
+
+    let (xi, yi, zi) = (yi, xi, -zi);
 
     Ok(Vector {
       x: (xi * self.asa.x - self.cal.mag_offset.x) * self.cal.mag_scale.x,
