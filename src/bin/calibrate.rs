@@ -45,8 +45,9 @@ fn main() {
 }
 
 fn wait() {
-  for i in 1..10 {
-    print!("\rStarting in {} seconds  ", 10 - i);
+  let num_secs = 12;
+  for i in 1..num_secs {
+    print!("\rStarting in {} seconds  ", num_secs - i);
     io::stdout().flush().expect("Could not flush stdout");
 
     sleep(Duration::from_secs(1));
@@ -143,9 +144,9 @@ fn calibrate_accel_axis(
 
     if axis == Axis::X {
       if dir == Direction::Up {
-        scale_lo.x += va.x;
-      } else {
         scale_hi.x += va.x;
+      } else {
+        scale_lo.x += va.x;
       }
     } else {
       offset.y += va.y;
@@ -154,9 +155,9 @@ fn calibrate_accel_axis(
 
     if axis == Axis::Y {
       if dir == Direction::Up {
-        scale_lo.y += va.y;
-      } else {
         scale_hi.y += va.y;
+      } else {
+        scale_lo.y += va.y;
       }
     } else {
       offset.x += va.x;
@@ -165,9 +166,9 @@ fn calibrate_accel_axis(
 
     if axis == Axis::Z {
       if dir == Direction::Up {
-        scale_lo.z += va.z;
-      } else {
         scale_hi.z += va.z;
+      } else {
+        scale_lo.z += va.z;
       }
     } else {
       offset.x += va.x;
@@ -324,7 +325,7 @@ fn calibrate_mag(mpu9250: &mut Mpu9250<I2cdev, Delay>) {
     y: (v_max.y - v_min.y) / 2.0,
     z: (v_max.z - v_min.z) / 2.0,
   };
-  let avg_radius = (v_avg.x + v_avg.y + v_avg.z) / 2.0;
+  let avg_radius = (v_avg.x + v_avg.y + v_avg.z) / 3.0;
 
   println!("");
   println!(

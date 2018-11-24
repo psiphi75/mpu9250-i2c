@@ -27,11 +27,11 @@ use std::thread::sleep;
 use std::time::Duration;
 use std::time::Instant;
 
-pub fn to_ms(duration: Duration) -> u64 {
+fn to_ms(duration: Duration) -> u64 {
   duration.as_secs() * 1_000 + (duration.subsec_millis() as u64)
 }
 
-pub fn vector_to_f32x3(v: &Vector<f32>) -> F32x3 {
+fn vector_to_f32x3(v: &Vector<f32>) -> F32x3 {
   F32x3 {
     x: v.x,
     y: v.y,
