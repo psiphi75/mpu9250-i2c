@@ -94,21 +94,11 @@ fn main() {
   let mut last_read;
   let rate = mpu9250.get_accel_gyro_rate_ms();
   let mag_rate = 10; // 10 milliseconds per read
-  let va = &mut Vector {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-  };
-  let vg = &mut Vector {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-  };
 
   // Let's boogie!
   loop {
     // Get the accelerometer and gyro data
-    mpu9250.get_accel_gyro(va, vg).unwrap();
+    let (va, vg) = mpu9250.get_accel_gyro().unwrap();
     last_read = Instant::now();
     print!(
       "Accel=>  {{ x: {:.5}, y: {:.5}, z: {:.5} }}",

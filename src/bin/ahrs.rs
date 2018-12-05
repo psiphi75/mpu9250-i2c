@@ -89,16 +89,6 @@ fn main() {
   // Set up some stuff
   let mut last_read;
   let rate = 10;
-  let va = &mut Vector {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-  };
-  let vg = &mut Vector {
-    x: 0.0,
-    y: 0.0,
-    z: 0.0,
-  };
 
   // Set up Magwick
   let mut ahrs = Marg::new(0.3, 0.01);
@@ -107,15 +97,15 @@ fn main() {
   // Let's boogie!
   loop {
     // Get the accelerometer and gyro data
-    mpu9250.get_accel_gyro(va, vg).unwrap();
+    let (va, vg) = mpu9250.get_accel_gyro().unwrap();
     last_read = Instant::now();
     let vm = &mpu9250.get_mag().unwrap();
 
     // Update the ahrs
     {
-      let mut ar = vector_to_f32x3(vg);
+      let mut ar = vector_to_f32x3(&vg);
       ar *= std::f32::consts::PI / 180.0;
-      let q = ahrs.update(vector_to_f32x3(vm), ar, vector_to_f32x3(va));
+      let q = ahrs.update(vector_to_f32x3(vm), ar, vector_to_f32x3(&va));
       i += 1;
       if i >= 10 {
         i = 0;

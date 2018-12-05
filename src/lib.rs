@@ -460,7 +460,7 @@ where
   /// than reading the accelerometer and gyroscope individually.
   ///
   /// The results are written into the two vectors proviced `va` and `vg`.
-  pub fn get_accel_gyro(&mut self, va: &mut Vector<f32>, vg: &mut Vector<f32>) -> Result<(), E> {
+  pub fn get_accel_gyro(&mut self) -> Result<(Vector<f32>, Vector<f32>), E> {
     let bytes: &mut [u8] = &mut [0; 14];
     self.i2c.read_bytes(
       mpu9250::ADDRESS,
@@ -470,19 +470,23 @@ where
 
     // Accelerometer - bytes 0:5
     let mut v = self.align_accel(bytes);
-    va.x = v.x;
-    va.y = v.y;
-    va.z = v.z;
+    let va = Vector {
+      x: v.x,
+      y: v.y,
+      z: v.z,
+    };
 
     // Skip Temperature - bytes 6:7
 
     // Gyroscope - bytes 8:13
     v = self.align_gyro(bytes, 8);
-    vg.x = v.x;
-    vg.y = v.y;
-    vg.z = v.z;
+    let vg = Vector {
+      x: v.x,
+      y: v.y,
+      z: v.z,
+    };
 
-    Ok(())
+    Ok((va, vg))
   }
 
   /// Get the raw temperature data
@@ -590,7 +594,7 @@ where
   /// Note, this will align the orientation of the magnetometer's reference
   /// frame to the same as the accelerometer and gyroscope.  Read the "Orientation of Axes"
   /// section of the Mpu9250 vendor documentation.
-  pub fn get_mag(&mut self) -> Result<(Vector<f32>), E> {
+  pub fn get_mag(&mut self) -> Result<Vector<f32>, E> {
     let bytes: &mut [u8] = &mut [0; 6];
 
     self.ak8963_get_mag_raw(bytes)?;
