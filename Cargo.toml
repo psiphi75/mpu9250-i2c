@@ -12,5 +12,5 @@ edition = "2018"
 
 [dependencies]
 embedded-hal = "0.2.2"
-linux-embedded-hal = "0.2.1"
+linux-embedded-hal = "0.2.2"
 madgwick = "0.1.1"
