@@ -535,16 +535,16 @@ where
   }
 
   /// Enable the magnetometer.  This will set the bypass, then run `ak8963_init()`.
-  pub fn enable_magnetometer(&mut self) -> Result<(bool), E> {
+  pub fn enable_magnetometer(&mut self) -> Result<(), E> {
     self.set_bypass_enabled(true)?;
     self.delay.delay_ms(10);
 
     self.ak8963_init()?;
     if self.get_bypass_enabled()? {
       self.ak8963_init()?;
-      Ok(true)
+      Ok(())
     } else {
-      Ok(false)
+      Err(Error)
     }
   }
 
