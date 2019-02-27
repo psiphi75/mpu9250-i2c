@@ -11,5 +11,7 @@ license = "Apache-2.0"
 
 [dependencies]
 embedded-hal = "0.2.2"
+
+[dev-dependencies]
 linux-embedded-hal = "0.2.2"
 madgwick = "0.1.1"
