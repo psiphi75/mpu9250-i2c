@@ -27,9 +27,11 @@ The sample includes:
 
 ```rust
 extern crate linux_embedded_hal as hal;
-extern crate mpu9250;
+extern crate mpu9250_i2c as mpu9250;
 use hal::{Delay, I2cdev};
 use mpu9250::{calibration::Calibration, Mpu9250};
+use std::time::Duration;
+use std::thread;
 
 fn main() {
 
@@ -48,7 +50,13 @@ fn main() {
   mpu9250.init().unwrap();
 
   // Probe the temperature
-  let temp = mpu9250.get_temperature_celcius().unwrap();
+  loop {
+    let temp = mpu9250.get_temperature_celsius().unwrap();
+    println!("Temp: {} °C", temp);
+    thread::sleep(Duration::from_millis(500));
+  }
+
+}
 }
 ```
 

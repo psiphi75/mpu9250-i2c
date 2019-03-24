@@ -46,7 +46,7 @@
 //!
 //! ```
 //! extern crate linux_embedded_hal as hal;
-//! extern crate mpu9250;
+//! extern crate mpu9250_i2c as mpu9250_i2c;
 //! use hal::{Delay, I2cdev};
 //! use mpu9250::{calibration::Calibration, Mpu9250};
 //!
