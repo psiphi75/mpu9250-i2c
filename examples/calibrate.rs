@@ -304,7 +304,7 @@ fn calibrate_mag(mpu9250: &mut Mpu9250<I2cdev, Delay>) {
 
   println!("    x        y        z      min x     min y     min z     max x     max y     max z");
   for _ in 0..NUM_MAG_READS {
-    let mut vm = mpu9250.get_mag().unwrap();
+    let vm = mpu9250.get_mag().unwrap();
     v_min.x = v_min.x.min(vm.x);
     v_min.y = v_min.y.min(vm.y);
     v_min.z = v_min.z.min(vm.z);

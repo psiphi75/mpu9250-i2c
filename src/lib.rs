@@ -270,7 +270,7 @@ where
   }
 
   /// Read the Full Scale range for the gyro from the device
-  pub fn get_full_scale_gyro_range(&mut self) -> Result<(u8), E> {
+  pub fn get_full_scale_gyro_range(&mut self) -> Result<u8, E> {
     let mut byte = self
       .i2c
       .read_byte(mpu9250::ADDRESS, mpu9250::Register::GYRO_CONFIG.addr())?;
@@ -307,7 +307,7 @@ where
   }
 
   /// Read the Full Scale range for the accelerometer from the device
-  pub fn get_full_scale_accel_range(&mut self) -> Result<(u8), E> {
+  pub fn get_full_scale_accel_range(&mut self) -> Result<u8, E> {
     let mut byte = self
       .i2c
       .read_byte(mpu9250::ADDRESS, mpu9250::Register::ACCEL_CONFIG_1.addr())?;
@@ -535,7 +535,7 @@ where
   }
 
   /// Enable the magnetometer.  This will set the bypass, then run `ak8963_init()`.
-  pub fn enable_magnetometer(&mut self) -> Result<(bool), E> {
+  pub fn enable_magnetometer(&mut self) -> Result<bool, E> {
     self.set_bypass_enabled(true)?;
     self.delay.delay_ms(10);
 
@@ -558,7 +558,7 @@ where
   }
 
   /// Get the magnetomter device Id
-  pub fn ak8963_get_device_id(&mut self) -> Result<(u8), E> {
+  pub fn ak8963_get_device_id(&mut self) -> Result<u8, E> {
     self
       .i2c
       .read_byte(mag::ADDRESS, mag::Register::WHO_AM_I.addr())
@@ -635,7 +635,7 @@ where
   }
 
   /// Get the magnetometer control details
-  pub fn ak8963_get_cntl(&mut self) -> Result<(mag::Ctnl1), E> {
+  pub fn ak8963_get_cntl(&mut self) -> Result<mag::Ctnl1, E> {
     Ok(mag::Ctnl1::from(
       self
         .i2c
